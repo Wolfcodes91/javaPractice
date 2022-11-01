@@ -1,5 +1,7 @@
 import java.text.NumberFormat;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
@@ -102,46 +104,79 @@ public class Main {
         // }
 
         // // Mortgage Calculator
-        Scanner scanner = new Scanner(System.in);
-        final byte MONTHS_IN_YEAR = 12;
-        final byte PERCENT = 100;
-        int principal = 0;
-        float annualInterest = 0;
-        float monthlyInterest = 0;
-        int numberOfPayments = 0;
+        // Scanner scanner = new Scanner(System.in);
+        // final byte MONTHS_IN_YEAR = 12;
+        // final byte PERCENT = 100;
+        // int principal = 0;
+        // float annualInterest = 0;
+        // float monthlyInterest = 0;
+        // int numberOfPayments = 0;
 
-        while (true) {
-            System.out.print("Principal ($1K - $1M): ");
-            principal = scanner.nextInt();
-            if (principal >= 1000 && principal <= 1_000_000)
-                break;
-            System.out.println("Enter a number between 1,000 and 1,000,000");
-        }
-        while (true) {
-            System.out.print("Annual Interest Rate: ");
-            annualInterest = scanner.nextFloat();
-            if (annualInterest > 0 && principal <= 30) {
-                monthlyInterest = annualInterest / PERCENT / MONTHS_IN_YEAR;
-                break;
-            }
-            System.out.println("Enter a value between 1 and 30.");
-        }
-        while (true) {
-            System.out.print("Period (Years): ");
-            byte years = scanner.nextByte();
-            if (years >= 1 && years <= 30) {
-                numberOfPayments = years * MONTHS_IN_YEAR;
-                break;
-            }
-            System.out.println("Enter a value between 1 and 30.");
-        }
+        // while (true) {
+        // System.out.print("Principal ($1K - $1M): ");
+        // principal = scanner.nextInt();
+        // if (principal >= 1000 && principal <= 1_000_000)
+        // break;
+        // System.out.println("Enter a number between 1,000 and 1,000,000");
+        // }
+        // while (true) {
+        // System.out.print("Annual Interest Rate: ");
+        // annualInterest = scanner.nextFloat();
+        // if (annualInterest > 0 && principal <= 30) {
+        // monthlyInterest = annualInterest / PERCENT / MONTHS_IN_YEAR;
+        // break;
+        // }
+        // System.out.println("Enter a value between 1 and 30.");
+        // }
+        // while (true) {
+        // System.out.print("Period (Years): ");
+        // byte years = scanner.nextByte();
+        // if (years >= 1 && years <= 30) {
+        // numberOfPayments = years * MONTHS_IN_YEAR;
+        // break;
+        // }
+        // System.out.println("Enter a value between 1 and 30.");
+        // }
 
-        double mortgage = principal
-                * (monthlyInterest * Math.pow(1 * monthlyInterest, numberOfPayments) - 1)
-                / (Math.pow(1 * monthlyInterest, numberOfPayments) - 1);
+        // double mortgage = principal
+        // * (monthlyInterest * Math.pow(1 * monthlyInterest, numberOfPayments) - 1)
+        // / (Math.pow(1 * monthlyInterest, numberOfPayments) - 1);
 
-        String mortgageFormatted = NumberFormat.getCurrencyInstance().format(mortgage);
-        System.out.println("Mortgage: " + mortgageFormatted);
-        scanner.close();
+        // String mortgageFormatted =
+        // NumberFormat.getCurrencyInstance().format(mortgage);
+        // System.out.println("Mortgage: " + mortgageFormatted);
+        // scanner.close();
+
+        // arrays
+        // arrays in java don't change size
+        // String[] friendsArray = new String[4];
+        String[] friendsArray = { "John", "Chris", "Eric", "Leah" };
+
+        // array lists
+        // array lists in java can change size
+        // ArrayList<String> friendsArrayList = new ArrayList<>();
+        ArrayList<String> friendsArrayList = new ArrayList<>(Arrays.asList("John", "Chris", "Eric", "Leah"));
+
+        // System.out.println(friendsArray[1]);
+        
+        // System.out.println(friendsArray.length);
+        // System.out.println(friendsArrayList.size());
+
+        // add element to array list
+        friendsArrayList.add("Bork");
+        
+        //change element in array or array list
+        friendsArray[0] = "Carl";
+        System.out.println(friendsArray[0]);
+        friendsArrayList.set(2, "Groq");
+        
+        System.out.println(friendsArrayList.get(2));
+
+        friendsArrayList.remove(0);
+        friendsArrayList.remove("Leah");
+        
+        System.out.println(friendsArray);
+        System.out.println(friendsArrayList);
+        
     }
 }
