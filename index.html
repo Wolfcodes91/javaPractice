@@ -1,0 +1,38 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ajax</title>
+  </head>
+  <body>
+    <button onClick="showCountries()">Show Countries</button>
+    <div id="feed"></div>
+    <script>
+      function showCountries() {
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", 'https://restcountries.com/v3.1/all', true);
+        xhr.onload = function() {
+            try {
+                if (xhr.status === 200) {
+                    console.log('success');
+                    let countries = JSON.parse(this.response);
+                    countries.forEach(country => {
+                        const countryCard = document.createElement('div');
+                        const countryCardImg = document.createElement('img')
+                        countryCard.innerHTML = country.name.common;
+                        countryCardImg.src = country.flags.png
+                        countryCard.appendChild(countryCardImg)
+                        document.getElementById('feed').appendChild(countryCard);
+                    })
+                }
+            }
+            catch(error) {
+                console.log(error);
+            }
+        }
+        xhr.send();
+      }
+    </script>
+  </body>
+</html>
